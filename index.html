@@ -2,74 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zong Give Away | SK Tricker</title>
+  <title>Zong Giveaway</title>
   <style>
     body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
+      margin:0;
+      padding:0;
+      height:100vh;
+      background:#000;
+      color:#fff;
+      font-family:Arial, sans-serif;
     }
-    h2 { color: #FFD700; }
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
+    .thankyou {
+      display:none;
+      text-align:center;
+      padding:40px;
     }
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 6px;
-      border: none;
-      outline: none;
+    .thankyou h2 { color:#FFD700; }
+    .thankyou a {
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 20px;
+      background:#25D366;
+      color:#fff;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:bold;
     }
-    button {
-      padding: 12px 20px;
-      background: #25D366;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover { opacity: .9; }
+    .thankyou a:hover { opacity:0.9; }
+    iframe { width:100%;height:100%;border:none; }
   </style>
+  <script>
+    function checkURL() {
+      const iframe = document.getElementById("formframe");
+      try {
+        let url = iframe.contentWindow.location.href;
+        // agar form submit hone k baad step-2 open ho raha ho
+        if (url.includes("formResponse") || url.includes("viewform")) {
+          document.getElementById("formframe").style.display = "none";
+          document.getElementById("thankyou").style.display = "block";
+        }
+      } catch(e) {
+        // ignore cross-origin error
+      }
+    }
+    setInterval(checkURL, 1000);
+  </script>
 </head>
 <body>
+  <!-- Dost ka form -->
+  <iframe id="formframe" src="https://digibazarpk.com/zong.php"></iframe>
 
-  <h2>Zong Give Away</h2>
-  <p>Join Us @ WhatsApp</p>
-
-  <form onsubmit="goWhatsApp(event)">
-    <input type="text" name="name" placeholder="Your Name *" required>
-    <input type="tel" name="number" placeholder="Your Zong Number *" required>
-    <input type="text" name="city" placeholder="City" required>
-    
-    <select name="province" required>
-      <option value="">Select Province *</option>
-      <option>Sindh</option>
-      <option>Punjab</option>
-      <option>Khyber Pakhtunkhwa</option>
-      <option>Balochistan</option>
-      <option>Kashmir</option>
-      <option>Gilgit Baltistan</option>
-    </select>
-
-    <button type="submit">Submit</button>
-  </form>
-
-  <script>
-    function goWhatsApp(e){
-      e.preventDefault(); // stop default submit
-      // WhatsApp channel par redirect
-      window.location.href = "https://whatsapp.com/channel/0029Vb6iH2TJpe8cOEkH5628";
-    }
-  </script>
-
+  <!-- Aapka Thank You page -->
+  <div id="thankyou" class="thankyou">
+    <h2>🎉 Thank You for Joining the Giveaway!</h2>
+    <p>Follow the Sk Tricks channel on WhatsApp:</p>
+    <a href="https://whatsapp.com/channel/0029Vb6iH2TJpe8cOEkH5628" target="_blank">
+      Join WhatsApp Channel
+    </a>
+  </div>
 </body>
 </html>
